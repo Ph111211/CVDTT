@@ -1,0 +1,7 @@
+CREATE TABLE DanhGia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    kyNang VARCHAR(255),
+    thaiDo VARCHAR(255),
+    noiDungKhac VARCHAR(255),
+    sinh_vien_id INT
+);
