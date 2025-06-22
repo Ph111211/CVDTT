@@ -7,6 +7,7 @@ import java.util.Set;
 public class Main {
     private static List<SinhVien> sinhViens = new ArrayList<>();
     private static DoanhNghiep doanhNghiep;
+    private static SinhVien sinhVien;
     private static Scanner scanner = new Scanner(System.in);
     private static DatabaseManager dbManager = new DatabaseManager();
 
@@ -23,7 +24,7 @@ public class Main {
             System.out.print("Nhập lựa chọn của bạn: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Xóa bộ đệm
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -76,26 +77,34 @@ public class Main {
             return;
         }
 
-        System.out.println("\nDanh sách MSV có trong cơ sở dữ liệu:");
+        System.out.println("\nDanh sách sinh_vien_id có trong cơ sở dữ liệu:");
         for (Integer id : sinhVienIds) {
             System.out.println("ID: " + id);
         }
-        System.out.print("Nhập MSV để xem đánh giá: ");
+        System.out.print("Nhập sinh_vien_id để xem đánh giá: ");
         int sinhVienId = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); // Xóa bộ đệm
 
         if (sinhVienIds.contains(sinhVienId)) {
-            DanhGia danhGia = dbManager.getLatestDanhGiaById(sinhVienId);
+            sinhVien = new SinhVien();
+            DanhGia danhGia = sinhVien.xemDanhGia(sinhVienId);
             if (danhGia != null) {
-                System.out.println("\nĐánh giá cho sinh viên ID " + sinhVienId + ":\n" + danhGia);
+                System.out.println("\nĐánh giá cho sinh viên ID " + sinhVienId + ":");
+                if (danhGia.kyNang != null) {
+                    System.out.println("- Kỹ năng: " + danhGia.kyNang);
+                }
+                if (danhGia.thaiDo != null) {
+                    System.out.println("- Thái độ: " + danhGia.thaiDo);
+                }
+                System.out.println("- Nội dung khác: " + danhGia.noiDungKhac);
+
             } else {
                 System.out.println("Không có đánh giá nào cho sinh viên ID " + sinhVienId + ".");
             }
         } else {
-            System.out.println("MSV " + sinhVienId + " không tồn tại trong cơ sở dữ liệu.");
+            System.out.println("Sinh_vien_id " + sinhVienId + " không tồn tại trong cơ sở dữ liệu.");
         }
     }
-
     private static void shutdown() {
         for (SinhVien sv : sinhViens) {
             sv.shutdown();

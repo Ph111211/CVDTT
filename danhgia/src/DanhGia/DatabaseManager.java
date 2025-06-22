@@ -44,9 +44,15 @@ public class DatabaseManager {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     DanhGia danhGia = new DanhGia();
-                    danhGia.kyNang = rs.getString("kyNang");
-                    danhGia.thaiDo = rs.getString("thaiDo");
+                    String kyNang = rs.getString("kyNang");
+                    String thaiDo = rs.getString("thaiDo");
                     danhGia.noiDungKhac = rs.getString("noiDungKhac");
+                    if (kyNang != null && !kyNang.trim().isEmpty()) {
+                        danhGia.kyNang = kyNang;
+                    }
+                    if (thaiDo != null && !thaiDo.trim().isEmpty()) {
+                        danhGia.thaiDo = thaiDo;
+                    }
                     return danhGia;
                 }
             }

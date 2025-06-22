@@ -18,7 +18,7 @@ public class DanhGiaThaiDoBuilder implements DanhGiaBuilder {
 
     @Override
     public void buildKyNang() {
-        danhGia.kyNang = "Không có";
+        danhGia.kyNang = "Chưa đánh giá";
     }
 
     @Override
