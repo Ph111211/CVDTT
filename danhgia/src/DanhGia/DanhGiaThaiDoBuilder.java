@@ -1,10 +1,14 @@
 package DanhGia;
 
+import java.util.Scanner;
+
 public class DanhGiaThaiDoBuilder implements DanhGiaBuilder {
     private DanhGia danhGia;
+    private Scanner scanner;
 
     public DanhGiaThaiDoBuilder() {
         this.reset();
+        scanner = new Scanner(System.in);
     }
 
     @Override
@@ -14,18 +18,18 @@ public class DanhGiaThaiDoBuilder implements DanhGiaBuilder {
 
     @Override
     public void buildKyNang() {
-        danhGia.kyNang = "Kỹ năng cơ bản";
+        danhGia.kyNang = "Không có";
     }
 
     @Override
     public void buildThaiDo() {
-        danhGia.thaiDo = "Thái độ rất tốt, năng động";
-    }
+        System.out.print("Nhập đánh giá thái độ: ");
+        danhGia.thaiDo = scanner.nextLine();    }
 
     @Override
     public void buildNoiDungKhac() {
-        danhGia.noiDungKhac = "Có tinh thần học hỏi và cải thiện";
-    }
+        System.out.print("Nhập nội dung đánh giá khác: ");
+        danhGia.noiDungKhac = scanner.nextLine();    }
 
     public DanhGia getResult() {
         return danhGia;

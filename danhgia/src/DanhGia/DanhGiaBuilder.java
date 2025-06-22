@@ -5,4 +5,5 @@ public interface DanhGiaBuilder {
     void buildKyNang();
     void buildThaiDo();
     void buildNoiDungKhac();
+    DanhGia getResult();
 }

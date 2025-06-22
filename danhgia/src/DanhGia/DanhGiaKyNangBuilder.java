@@ -24,8 +24,7 @@ public class DanhGiaKyNangBuilder implements DanhGiaBuilder {
 
     @Override
     public void buildThaiDo() {
-        System.out.print("Nhập đánh giá thái độ: ");
-        danhGia.thaiDo = scanner.nextLine();
+        danhGia.thaiDo = "Không có";
     }
 
     @Override
